@@ -42,7 +42,7 @@ public class ProductBasket {
     }
     public boolean findProduct(String productName) {
         for (int i = 0; i < products.length; i++) {
-            if (Objects.equals(products[i].getName(), productName)) {
+            if (products[i] != null && Objects.equals(products[i].getName(), productName)) {
                 return true;
             }
         }
