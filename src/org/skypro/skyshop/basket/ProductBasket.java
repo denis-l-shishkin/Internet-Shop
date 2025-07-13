@@ -10,14 +10,11 @@ public class ProductBasket {
         this.products = new Product[5];
     }
 
-    public void addProduct(String productName, int productCost) {
-        if (productName == null || productName.isBlank()) {
-            throw new IllegalArgumentException("Название продукта не может быть null!");
-        }
+    public void addProduct(Product product) {
         for (int i = 0; i < products.length; i++) {
             if (products[i] == null) {
-                products[i] = new Product(productName, productCost);
-                System.out.println("Продукт " + productName + " добавлен в корзину");
+                products[i] = product;
+                System.out.println("Продукт " + product.getName() + " добавлен в корзину");
                 return;
             }
         }
@@ -25,15 +22,10 @@ public class ProductBasket {
     }
 
     public int calculateTotalCost() {
-        if(products == null || products.length == 0) {
-            //throw new IllegalArgumentException("В корзине пусто!");
-            System.out.println("В корзине пусто!");
-            return 0;//добавил вывод и возврат 0 для продолжения работы программы
-        }
         int totalCost = 0;
         for (int i = 0; i < products.length; i++) {
             if (products[i] != null) {
-                int cost = products[i].getProductCost();
+                int cost = products[i].getCost();
                 totalCost += cost;
             }
         }
@@ -41,31 +33,24 @@ public class ProductBasket {
     }
 
     public void printProductsInBasket() {
-        if(products == null || products.length == 0) {
-            System.out.println("В корзине пусто!");
-        } else {
-            for (Product product : products) {
-                if (product != null) {
-                    System.out.println(product);
-                }
+        for (Product product : products) {
+            if (product != null) {
+                System.out.println(product);
             }
-            System.out.println("Итого: " + calculateTotalCost());
         }
+        System.out.println("Итого: " + calculateTotalCost());
     }
     public boolean findProduct(String productName) {
-        if(products == null || products.length == 0) {
-            //throw new IllegalArgumentException("В корзине пусто!");
-            System.out.println("В корзине пусто!");
-            return false;//добавил вывод и возврат false для продолжения работы программы
-        }
         for (int i = 0; i < products.length; i++) {
-            if (Objects.equals(products[i].getProductName(), productName)) {
+            if (Objects.equals(products[i].getName(), productName)) {
                 return true;
             }
         }
         return false;
     }
     public void cleanBasket() {
-        products = null;
+        for (int i = 0; i < products.length; i++) {
+            products[i] = null;
+        }
     }
 }
