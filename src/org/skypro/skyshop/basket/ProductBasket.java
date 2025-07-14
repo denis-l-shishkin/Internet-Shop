@@ -10,6 +10,15 @@ public class ProductBasket {
         this.products = new Product[5];
     }
 
+    public boolean isEmpty() {
+        for (int i = 0; i < products.length; i++) {
+            if (products[i] != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void addProduct(Product product) {
         for (int i = 0; i < products.length; i++) {
             if (products[i] == null) {
@@ -22,6 +31,10 @@ public class ProductBasket {
     }
 
     public int calculateTotalCost() {
+        if (isEmpty()) {
+            System.out.println("Корзина пуста!");
+            return 0;
+        }
         int totalCost = 0;
         for (int i = 0; i < products.length; i++) {
             if (products[i] != null) {
@@ -41,6 +54,9 @@ public class ProductBasket {
         System.out.println("Итого: " + calculateTotalCost());
     }
     public boolean findProduct(String productName) {
+        if (isEmpty()) {
+            System.out.println("Корзина пуста!");
+        }
         for (int i = 0; i < products.length; i++) {
             if (products[i] != null && Objects.equals(products[i].getName(), productName)) {
                 return true;
