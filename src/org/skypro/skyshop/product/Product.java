@@ -1,7 +1,7 @@
 package org.skypro.skyshop.product;
 
 public abstract class Product {
-    String name;
+    protected String name;
 
     public Product(String name) {
         this.name = name;
