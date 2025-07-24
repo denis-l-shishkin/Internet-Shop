@@ -1,10 +1,12 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.seach.SearchEngine;
 
 public class App {
     public static void main(String[] args) {
@@ -54,5 +56,46 @@ public class App {
 
         System.out.println("Поиск товара \"Хлеб\" в корзине 2, результат поиска:");
         System.out.println(basket2.findProduct("Хлеб"));
+
+        SearchEngine engine = new SearchEngine(10);
+        engine.add(product1);
+        engine.add(product2);
+        engine.add(product3);
+        engine.add(product4);
+        engine.add(product5);
+
+        Article article1 = new Article("Java это круто!", "Написанную программу на Java можно запустить в любой ОС, поддерживающей JVM.");
+        Article article2 = new Article("О пользе вина.", "Очень умеренное употребление алкоголя может оказывать защитное действие на сердце. В первую очередь это касается красного вина.");
+        Article article3 = new Article("Искусственный интеллект Smart Engines.", "ИИ-помощника для проверки паспортов внедрили во Внуково.");
+        Article article4 = new Article("Искусственный интеллект ChatGPT4.", "Нейросеть онлайн для текста и решения задач.");
+        Article article5 = new Article("Искусственный интеллект ElevenLabs.", "Преобразование текста в реалистичную речь с помощью нейросети.");
+
+        engine.add(article1);
+        engine.add(article2);
+        engine.add(article3);
+        engine.add(article4);
+        engine.add(article5);
+
+        String query = "Хлеб";
+        System.out.println("Поисковый запрос: " + query + "\n Найдено:");
+        engine.search(query);
+        query = "Java";
+        System.out.println("Поисковый запрос: " + query + "\n Найдено:");
+        engine.search(query);
+        query = "интеллект";
+        System.out.println("Поисковый запрос: " + query + "\n Найдено:");
+        engine.search(query);
+        query = "вино";
+        System.out.println("Поисковый запрос: " + query + "\n Найдено:");
+        engine.search(query);
+        query = "вина";
+        System.out.println("Поисковый запрос: " + query + "\n Найдено:");
+        engine.search(query);
+
+
+
+
+
     }
+
 }
