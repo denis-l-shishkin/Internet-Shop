@@ -8,6 +8,8 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.seach.SearchEngine;
 
+import java.util.Arrays;
+
 public class App {
     public static void main(String[] args) {
         ProductBasket basket1 = new ProductBasket();
@@ -77,24 +79,15 @@ public class App {
         engine.add(article5);
 
         String query = "Хлеб";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено:");
-        engine.search(query);
+        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
         query = "Java";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено:");
-        engine.search(query);
+        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
         query = "интеллект";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено:");
-        engine.search(query);
+        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
         query = "вино";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено:");
-        engine.search(query);
+        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
         query = "вина";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено:");
-        engine.search(query);
-
-
-
-
+        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
 
     }
 

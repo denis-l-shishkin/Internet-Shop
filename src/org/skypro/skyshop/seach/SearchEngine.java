@@ -11,8 +11,10 @@ public class SearchEngine {
         Searchable[] result = new Searchable[5];
         int count = 0;
         for (Searchable searchable : searchables) {
+            if (query == null) continue;
             if (searchable.getSearchTerm().contains(query)) {
-                System.out.println(searchable.getStringRepresentation());
+                result[count++] = searchable;
+
             }
             if (count == 5) {
                 break;
@@ -23,8 +25,7 @@ public class SearchEngine {
 
     public void add(Searchable searchable) {
         if (size < searchables.length) {
-            searchables[size] = searchable;
-            size++;
+            searchables[size++] = searchable;
         }
     }
 
