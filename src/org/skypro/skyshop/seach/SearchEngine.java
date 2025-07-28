@@ -11,7 +11,6 @@ public class SearchEngine {
         Searchable[] result = new Searchable[5];
         int count = 0;
         for (Searchable searchable : searchables) {
-            if (query == null) continue;
             if (searchable.getSearchTerm().contains(query)) {
                 result[count++] = searchable;
 
