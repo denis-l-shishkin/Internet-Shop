@@ -2,6 +2,7 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
@@ -69,7 +70,7 @@ public class App {
         Article article1 = new Article("Java это круто!", "Написанную программу на Java можно запустить в любой ОС, поддерживающей JVM.");
         Article article2 = new Article("О пользе вина.", "Очень умеренное употребление алкоголя может оказывать защитное действие на сердце. В первую очередь это касается красного вина.");
         Article article3 = new Article("Искусственный интеллект Smart Engines.", "ИИ-помощника для проверки паспортов внедрили во Внуково.");
-        Article article4 = new Article("Искусственный интеллект ChatGPT4.", "Нейросеть онлайн для текста и решения задач.");
+        Article article4 = new Article("Искусственный интеллект ChatGPT4.", "Нейросеть онлайн с искусственным интеллектом для текста и интеллектом для решения задач.");
         Article article5 = new Article("Искусственный интеллект ElevenLabs.", "Преобразование текста в реалистичную речь с помощью нейросети.");
 
         engine.add(article1);
@@ -88,6 +89,38 @@ public class App {
         System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
         query = "вина";
         System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
+
+        try {
+            SimpleProduct product7 = new SimpleProduct("", 100);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            SimpleProduct product7 = new SimpleProduct("Огурцы", 0);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            DiscountedProduct product7 = new DiscountedProduct("Огурцы", 0, 15);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            DiscountedProduct product7 = new DiscountedProduct("Огурцы", 80, 150);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            query = "интеллект";
+            System.out.println("Поисковый запрос: " + query + "\n Найден наиболее подходящий результат: " + engine.searchTheBest(query));
+            query = "солнце";
+            System.out.println("Поисковый запрос: " + query + "\n Найден наиболее подходящий результат: " + engine.searchTheBest(query));
+        } catch (BestResultNotFound e) {
+            System.out.println(e);
+        }
+
+
+
 
     }
 
