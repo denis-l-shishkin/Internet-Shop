@@ -8,12 +8,12 @@ public class DiscountedProduct extends Product {
         super(name);
         if (!(basePrise >= 1)) {
             throw new IllegalArgumentException("Стоимость дисконтного товара должна быть больше 0!");
-        } else if (!(discountInPercent <= 100 && discountInPercent >= 0)){
-            throw new IllegalArgumentException("Скидка в процентах должна быть в диаппазоне от 0 до 100!");
-        } else {
-            this.basePrice = basePrise;
-            this.discountInPercent = discountInPercent;
         }
+        if (!(discountInPercent <= 100 && discountInPercent >= 0)){
+            throw new IllegalArgumentException("Скидка в процентах должна быть в диаппазоне от 0 до 100!");
+        }
+        this.basePrice = basePrise;
+        this.discountInPercent = discountInPercent;
     }
 
     @Override

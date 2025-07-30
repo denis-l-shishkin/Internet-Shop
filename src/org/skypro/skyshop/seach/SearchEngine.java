@@ -1,6 +1,6 @@
 package org.skypro.skyshop.seach;
 
-import org.skypro.skyshop.exception.BestResultNotFound;
+import org.skypro.skyshop.exception.BestResultNotFoundException;
 
 public class SearchEngine {
     private Searchable[] searchables;
@@ -41,10 +41,9 @@ public class SearchEngine {
             }
         }
         if (bestResult == null) {
-            throw new BestResultNotFound(query);
-        } else {
-            return bestResult;
+            throw new BestResultNotFoundException(query);
         }
+        return bestResult;
     }
 
     public void add(Searchable searchable) {

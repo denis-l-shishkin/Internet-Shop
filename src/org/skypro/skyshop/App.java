@@ -2,7 +2,7 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.exception.BestResultNotFound;
+import org.skypro.skyshop.exception.BestResultNotFoundException;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
@@ -115,7 +115,7 @@ public class App {
             System.out.println("Поисковый запрос: " + query + "\n Найден наиболее подходящий результат: " + engine.searchTheBest(query));
             query = "солнце";
             System.out.println("Поисковый запрос: " + query + "\n Найден наиболее подходящий результат: " + engine.searchTheBest(query));
-        } catch (BestResultNotFound e) {
+        } catch (BestResultNotFoundException e) {
             System.out.println(e);
         }
 
