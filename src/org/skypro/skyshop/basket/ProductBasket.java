@@ -19,7 +19,6 @@ public class ProductBasket {
 
     public void addProduct(Product product) {
         products.add(product);
-        System.out.println("Продукт " + product.getName() + " добавлен в корзину");
     }
 
     public int calculateTotalCost() {
