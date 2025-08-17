@@ -9,7 +9,9 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.seach.SearchEngine;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -60,7 +62,7 @@ public class App {
         System.out.println("Поиск товара \"Хлеб\" в корзине 2, результат поиска:");
         System.out.println(basket2.findProduct("Хлеб"));
 
-        SearchEngine engine = new SearchEngine(10);
+        SearchEngine engine = new SearchEngine();
         engine.add(product1);
         engine.add(product2);
         engine.add(product3);
@@ -80,15 +82,15 @@ public class App {
         engine.add(article5);
 
         String query = "Хлеб";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
+        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
         query = "Java";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
+        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
         query = "интеллект";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
+        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
         query = "вино";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
+        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
         query = "вина";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + Arrays.toString(engine.search(query)));
+        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
 
         try {
             SimpleProduct product7 = new SimpleProduct("", 100);
@@ -119,9 +121,25 @@ public class App {
             System.out.println(e);
         }
 
+        basket1.printProductsInBasket();
 
+        printRemoveProducts(basket1.removeProduct("Торт"));
 
+        System.out.printf("Содержимое корзины после удаления продукта. \n");
+
+        basket1.printProductsInBasket();
+
+        printRemoveProducts(basket1.removeProduct("Манго"));
+
+        basket1.printProductsInBasket();
 
     }
-
+    public static void printRemoveProducts (List<Product> removeProducts) {
+        List<Product> removeProducts1 = removeProducts;
+        if (removeProducts1.isEmpty()) {
+            System.out.println("Список пуст!");
+        } else {
+            System.out.println("Список удаленных продуктов: \n" + removeProducts1);
+        }
+    }
 }
