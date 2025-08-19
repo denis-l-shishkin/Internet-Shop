@@ -80,13 +80,8 @@ public class ProductBasket {
 
     public List<Product> removeProduct(String productName) {
         List<Product> removeProducts = new ArrayList<>();
-        for (List<Product> products: productsMap.values()) {
-            for (Product product : products) {
-                if (Objects.equals(product.getName(), productName)) {
-                    products.remove(product);
-                    removeProducts.add(product);
-                }
-            }
+        if (productsMap.containsKey(productName)) {
+            removeProducts = productsMap.remove(productName);
         }
         return removeProducts;
     }
