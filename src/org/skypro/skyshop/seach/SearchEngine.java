@@ -4,6 +4,8 @@ import org.skypro.skyshop.exception.BestResultNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class SearchEngine {
     private List<Searchable> searchables;
@@ -14,12 +16,11 @@ public class SearchEngine {
         this.size = 0;
     }
 
-    public List<Searchable> search(String query) {
-        List<Searchable> result = new ArrayList<>();
+    public Map<String, Searchable> search(String query) {
+        Map<String, Searchable> result = new TreeMap<>();
         for (Searchable searchable : searchables) {
             if (searchable.getSearchTerm().contains(query)) {
-                result.add(searchable);
-
+                result.put(searchable.getNameObject(), searchable);
             }
         }
         return result;
