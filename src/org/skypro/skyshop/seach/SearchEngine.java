@@ -1,39 +1,28 @@
 package org.skypro.skyshop.seach;
-
 import org.skypro.skyshop.exception.BestResultNotFoundException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class SearchEngine {
-    private Set<Searchable> searchables;
+    private List<Searchable> searchables;
     private int size;
-
     public SearchEngine() {
-        this.searchables = new HashSet<>();
+        this.searchables = new ArrayList<>();
         this.size = 0;
     }
 
-    public Set<Searchable> search(String query) {
-        Set<Searchable> result = new TreeSet<>(new SearchableComparator());
+    public Map<String, Searchable> search(String query) {
+        Map<String, Searchable> result = new TreeMap<>();
         for (Searchable searchable : searchables) {
             if (searchable.getSearchTerm().contains(query)) {
-                result.add(searchable);
+                result.put(searchable.getNameObject(), searchable);
             }
         }
         return result;
     }
-    public static class SearchableComparator implements Comparator<Searchable> {
-    @Override
-        public int compare(Searchable o1, Searchable o2) {
-        int lengthO1 = o1.getNameObject().length();
-        int lengthO2 = o2.getNameObject().length();
-        if (Integer.compare(lengthO1, lengthO2) != 0) {
-            return Integer.compare(lengthO1, lengthO2);
-        }
-        return o1.getNameObject().compareTo(o2.getNameObject());
-        }
-    }
-
     public Searchable searchTheBest(String query) {
         int maxCount = 0;
         Searchable bestResult = null;
@@ -56,7 +45,6 @@ public class SearchEngine {
         }
         return bestResult;
     }
-
     public void add(Searchable searchable) {
         searchables.add(searchable);
     }

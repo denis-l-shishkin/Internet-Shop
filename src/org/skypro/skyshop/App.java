@@ -74,14 +74,12 @@ public class App {
         Article article3 = new Article("Искусственный интеллект Smart Engines.", "ИИ-помощника для проверки паспортов внедрили во Внуково.");
         Article article4 = new Article("Искусственный интеллект ChatGPT4.", "Нейросеть онлайн с искусственным интеллектом для текста и интеллектом для решения задач.");
         Article article5 = new Article("Искусственный интеллект ElevenLabs.", "Преобразование текста в реалистичную речь с помощью нейросети.");
-        Article article6 = new Article("Искусственный интеллект ElavenLabs.", "Преобразование текста в реалистичную речь с помощью нейросети.");
 
         engine.add(article1);
         engine.add(article2);
         engine.add(article3);
         engine.add(article4);
         engine.add(article5);
-        engine.add(article6);
 
         String query = "Хлеб";
         System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
