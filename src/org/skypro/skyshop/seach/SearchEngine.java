@@ -1,8 +1,10 @@
 package org.skypro.skyshop.seach;
 
 import org.skypro.skyshop.exception.BestResultNotFoundException;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SearchEngine {
     private Set<Searchable> searchables;
@@ -14,19 +16,21 @@ public class SearchEngine {
     }
 
     public Set<Searchable> search(String query) {
-        Set<Searchable> result = new TreeSet<> ((o1, o2) -> {
-            int lengthO1 = o1.getNameObject().length();
-            int lengthO2 = o2.getNameObject().length();
-            if (lengthO1 != lengthO2) {
-                return Integer.compare(lengthO1, lengthO2);
-            }
-            return o1.getNameObject().compareTo(o2.getNameObject());
-        });
-        for (Searchable searchable : searchables) {
+        Set<Searchable> result = searchables.stream()
+                .filter(searchable -> searchable.getSearchTerm().contains(query))
+                .collect(Collectors.toCollection(() -> new TreeSet<>(((o1, o2) -> {
+                    int lengthO1 = o1.getNameObject().length();
+                    int lengthO2 = o2.getNameObject().length();
+                    if (lengthO1 != lengthO2) {
+                        return Integer.compare(lengthO1, lengthO2);
+                    }
+                    return o1.getNameObject().compareTo(o2.getNameObject());
+                }))));
+        /*for (Searchable searchable : searchables) {
             if (searchable.getSearchTerm().contains(query)) {
                 result.add(searchable);
             }
-        }
+        }*/
         return result;
     }
 

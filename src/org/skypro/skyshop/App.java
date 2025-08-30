@@ -86,15 +86,15 @@ public class App {
 
 
         String query = "Хлеб";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
+        System.out.println("Поисковый запрос: " + query + "\nНайдено:\n" + engine.search(query));
         query = "Java";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
+        System.out.println("Поисковый запрос: " + query + "\nНайдено:\n" + engine.search(query));
         query = "интеллект";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
+        System.out.println("Поисковый запрос: " + query + "\nНайдено:\n" + engine.search(query));
         query = "вино";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
+        System.out.println("Поисковый запрос: " + query + "\nНайдено:\n" + engine.search(query));
         query = "вина";
-        System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
+        System.out.println("Поисковый запрос: " + query + "\nНайдено:\n" + engine.search(query));
 
         try {
             SimpleProduct product7 = new SimpleProduct("", 100);
