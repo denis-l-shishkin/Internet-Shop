@@ -3,6 +3,7 @@ package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
 
 import java.util.*;
+import java.util.function.ToIntFunction;
 
 public class ProductBasket {
     private final Map<String, List<Product>> productsMap;
@@ -30,25 +31,20 @@ public class ProductBasket {
             System.out.println("Корзина пуста!");
             return 0;
         }
-        int totalCost = 0;
-        for (List<Product> products: productsMap.values()) {
-            for (Product product : products) {
-                int cost = product.getPrice();
-                totalCost += cost;
-            }
-        }
-        return totalCost;
+        return productsMap.values().stream()
+                .filter(Objects::nonNull)
+                .flatMap(Collection::stream)
+                .filter(Objects::nonNull)
+                .mapToInt(Product::getPrice)
+                .sum();
     }
-    public int countIsSpecial() {
-        int count = 0;
-        for (List<Product> products: productsMap.values()) {
-            for (Product product : products) {
-                if (product.isSpecial() ) {
-                    count++;
-                }
-            }
-        }
-        return count;
+    public long countIsSpecial() {
+        return productsMap.values().stream()
+                .filter(Objects::nonNull)
+                .flatMap(Collection::stream)
+                .filter(Objects::nonNull)
+                .filter(Product::isSpecial)
+                .count();
     }
 
     public void printProductsInBasket() {
@@ -65,14 +61,10 @@ public class ProductBasket {
             System.out.println("Корзина пуста!");
             return false;
         }
-        for (List<Product> products: productsMap.values()) {
-            for (Product product : products) {
-                if (Objects.equals(product.getName(), productName)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        boolean result = productsMap.values().stream()
+                .flatMap(Collection::stream)
+                .anyMatch(product -> product.getName().equals(productName));
+        return result;
     }
     public void cleanBasket() {
         productsMap.clear();
