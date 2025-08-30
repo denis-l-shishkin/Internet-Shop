@@ -82,6 +82,8 @@ public class App {
         engine.add(article4);
         engine.add(article5);
         engine.add(article6);
+        engine.add(article4);
+
 
         String query = "Хлеб";
         System.out.println("Поисковый запрос: " + query + "\n Найдено: " + engine.search(query));
